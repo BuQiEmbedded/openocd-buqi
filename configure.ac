@@ -258,6 +258,10 @@ AC_ARG_ENABLE([gcov],
   AS_HELP_STRING([--enable-gcov], [Enable runtime coverage collection via gcov]),
   [enable_gcov=$enableval], [enable_gcov=no])
 
+AC_ARG_ENABLE([ch347],
+  AS_HELP_STRING([--enable-ch347], [Enable building support for CH347]),
+     [build_ch347=$enableval], [build_ch347=no])
+
 AS_IF([test "x$enable_gcov" = "xyes"], [
   AC_DEFINE([USE_GCOV], [1], [1 to enable coverage collection using gcov.])
   dnl When collecting coverage, disable optimizations.
@@ -510,6 +514,12 @@ AS_IF([test "x$build_gw16012" = "xyes"], [
   AC_DEFINE([BUILD_GW16012], [0], [0 if you don't want the Gateworks GW16012 driver.])
 ])
 
+AS_IF([test "x$build_ch347" = "xyes"], [
+  AC_DEFINE([BUILD_CH347], [1], [1 if you want CH347.])
+], [
+  AC_DEFINE([BUILD_CH347], [0], [0 if you don't want CH347.])
+])
+
 AS_IF([test "x$use_internal_jimtcl" = "xyes"], [
   AS_IF([test -f "$srcdir/jimtcl/configure"], [
     AS_IF([test "x$use_internal_jimtcl_maintainer" = "xyes"], [
@@ -699,6 +709,7 @@ AS_IF([test "x$enable_stlink" != "xno" -o "x$enable_ti_icdi" != "xno" -o "x$enab
 AM_CONDITIONAL([HLADAPTER_STLINK], [test "x$enable_stlink" != "xno"])
 AM_CONDITIONAL([HLADAPTER_ICDI], [test "x$enable_ti_icdi" != "xno"])
 AM_CONDITIONAL([HLADAPTER_NULINK], [test "x$enable_nulink" != "xno"])
+AM_CONDITIONAL([CH347], [test "x$build_ch347" = "xyes"])
 AM_CONDITIONAL([CMSIS_DAP_CORE],
    [test "x$enable_cmsis_dap" != "xno" -o "x$enable_cmsis_dap_v2" != "xno" -o "x$enable_cmsis_dap_tcp" != "xno"])
 
