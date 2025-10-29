@@ -4,6 +4,3 @@
 [submodule "src/jtag/drivers/libjaylink"]
 	path = src/jtag/drivers/libjaylink
 	url = https://gitlab.zapb.de/libjaylink/libjaylink.git
-[submodule "src/jtag/drivers/libjlink"]
-	path = src/jtag/drivers/libjlink
-	url = https://gitlab.zapb.de/libjaylink/libjaylink.git
